@@ -1,17 +1,12 @@
 import os
-from dotenv import load_dotenv
-import streamlit as st
 
 class OpenAIConfig:
     @staticmethod
     def load_openai_api_key():
-        """Load and validate the OpenAI API key from the environment."""
-        load_dotenv()
-        
+        """Load the OpenAI API key from the environment variables."""
         openai_api_key = os.getenv("OPENAI_API_KEY")
         
         if not openai_api_key:
-            st.error("Please ensure that the OpenAI API key is set in the .env file.")
-            raise EnvironmentError("The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable.")
+            raise EnvironmentError("The OPENAI_API_KEY environment variable is not set.")
         
         return openai_api_key
